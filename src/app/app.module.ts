@@ -42,6 +42,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { RoleService } from './services/role.service';
+import { OrganisationLevelComponent } from './custom/organisation/organisation-level/organisation-level.component';
 
 @NgModule({
   imports: [
@@ -66,6 +67,7 @@ import { RoleService } from './services/role.service';
     P500Component,
     LoginComponent,
     RegisterComponent,
+    OrganisationLevelComponent,
   ],
   providers: [{
     provide: LocationStrategy,

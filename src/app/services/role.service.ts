@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IRole } from '../interfaces/IRole';
+import { settings } from '../../../settings';
+
+
 
 
 @Injectable({
@@ -9,12 +11,12 @@ import { IRole } from '../interfaces/IRole';
 })
 export class RoleService {
 
-  private _url: string = 'http://api.zilding.com/Role/AllRoles';
+  private _url: string = settings.baseUrl;
 
   constructor(private http: HttpClient) { }
 
-  getRoles() : Observable<IRole[]> {
-    return this.http.get<IRole[]>(this._url);     
+  getRoles() : Observable<any> {
+    return this.http.get<any>(this._url +'Role/AllRoles');     
   }
 
 }
