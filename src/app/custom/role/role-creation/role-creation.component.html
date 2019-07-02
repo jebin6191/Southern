@@ -1,0 +1,127 @@
+<div class="animated fadeIn">
+        <div class="row" *ngIf="createRole_flg">
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <strong>Role Creation</strong>
+                    </div>
+                    <div class="card-body">
+
+                      <div class="row">
+                        <div class="form-group col-sm-3">
+                          <label for="ccmonth">Organisation Name</label>
+                          <select class="form-control" id="ccmonth">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
+                        </div>
+                        <div class="col-sm-3">
+                                <div class="form-group">
+                                  <label for="ccnumber">Role Name</label>
+                                  <input type="text" class="form-control" id="ccnumber" placeholder="">
+                                </div>
+                              </div>
+                                <div class="form-group">
+                                    <div class="row align-items-center">
+                                        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                                                <label for="ccnumber"></label>
+                                            <button type="button" class="btn btn-block btn-primary">Create</button>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                                                <label for="ccnumber"></label>
+                                            <button type="button" class="btn btn-block btn-secondary" (click)="OnCancelBtnClick()">Cancel</button>
+                                        </div>
+                                    </div>      
+                                </div>
+                      </div><!--/.row-->
+                    </div>
+                  </div>
+                </div><!--/.col-->
+              </div>
+
+        <div class="row" *ngIf="!createRole_flg">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <i class="fa fa-align-justify"></i> <strong>List Of Available Roles</strong>
+                    </div>
+                    <div class="card-body">
+
+                    <div class="row align-items-center">
+                        <div class="form-group">
+                            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                                <label for="ccnumber"></label>
+                                <button type="button" class="btn btn-block btn-primary" (click)=OnCreateNewRoleBtnClick()>Create New Role</button>
+                                </div>
+                            </div>
+                        </div>
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Username</th>
+                            <th>Date registered</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Samppa Nori</td>
+                            <td>2012/01/01</td>
+                            <td>Member</td>
+                            <td>
+                              <span class="badge badge-success">Active</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Estavan Lykos</td>
+                            <td>2012/02/01</td>
+                            <td>Staff</td>
+                            <td>
+                              <span class="badge badge-danger">Banned</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Chetan Mohamed</td>
+                            <td>2012/02/01</td>
+                            <td>Admin</td>
+                            <td>
+                              <span class="badge badge-secondary">Inactive</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Derick Maximinus</td>
+                            <td>2012/03/01</td>
+                            <td>Member</td>
+                            <td>
+                              <span class="badge badge-warning">Pending</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Friderik Dávid</td>
+                            <td>2012/01/21</td>
+                            <td>Staff</td>
+                            <td>
+                              <span class="badge badge-success">Active</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                        <li class="page-item active">
+                          <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--/.col-->
+              </div>
+    </div>
