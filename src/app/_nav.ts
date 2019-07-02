@@ -87,6 +87,18 @@ export const navItems: NavData[] = [
     ]
   },
   {
+    name: 'Organisattion',
+    url: '/organisation',
+    icon: 'icon-directions',
+    children:[
+      {
+        name:'Organisation Level',
+        url:'/organisation/organisation-level',
+        icon:'icon-flag'
+      }
+    ]
+  },
+  {
     title: true,
     name: 'Components'
   },

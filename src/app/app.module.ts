@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 
 // Import containers
 import { DefaultLayoutComponent } from './containers';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
@@ -42,7 +43,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { RoleService } from './services/role.service';
-import { OrganisationLevelComponent } from './custom/organisation/organisation-level/organisation-level.component';
+import { OrganisationService } from './services/organisation.service';
 
 @NgModule({
   imports: [
@@ -50,7 +51,7 @@ import { OrganisationLevelComponent } from './custom/organisation/organisation-l
     BrowserAnimationsModule,
     AppRoutingModule,
     AppAsideModule,
-    HttpClientModule,
+    HttpClientModule,FormsModule, ReactiveFormsModule,
     AppBreadcrumbModule.forRoot(),
     AppFooterModule,
     AppHeaderModule,
@@ -59,6 +60,7 @@ import { OrganisationLevelComponent } from './custom/organisation/organisation-l
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule
+    
   ],
   declarations: [
     AppComponent,
@@ -66,14 +68,14 @@ import { OrganisationLevelComponent } from './custom/organisation/organisation-l
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent,
-    OrganisationLevelComponent,
+    RegisterComponent
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
-  RoleService],
+  RoleService,
+  OrganisationService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

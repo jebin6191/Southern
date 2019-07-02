@@ -1,46 +1,44 @@
 <div class="animated fadeIn">
-        <div class="row" *ngIf="createRole_flg">
-                <div class="col-sm-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <strong>Role Creation</strong>
-                    </div>
-                    <div class="card-body">
+      <div class="row" *ngIf="createRole_flg">
+          <div class="col-sm-12">
+            <form [formGroup]="RoleCreationForm">
+              <div class="card">
+                <div class="card-header">
+                  <strong>Role Creation</strong>
+                </div>
+                <div class="card-body">
 
-                      <div class="row">
-                        <div class="form-group col-sm-3">
-                          <label for="ccmonth">Organisation Name</label>
-                          <select class="form-control" id="ccmonth">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                          </select>
-                        </div>
-                        <div class="col-sm-3">
-                                <div class="form-group">
-                                  <label for="ccnumber">Role Name</label>
-                                  <input type="text" class="form-control" id="ccnumber" placeholder="">
-                                </div>
-                              </div>
-                                <div class="form-group">
-                                    <div class="row align-items-center">
-                                        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
-                                                <label for="ccnumber"></label>
-                                            <button type="button" class="btn btn-block btn-primary">Create</button>
-                                        </div>
-                                        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
-                                                <label for="ccnumber"></label>
-                                            <button type="button" class="btn btn-block btn-secondary" (click)="OnCancelBtnClick()">Cancel</button>
-                                        </div>
-                                    </div>      
-                                </div>
-                      </div><!--/.row-->
+                  <div class="row">
+                    <div class="form-group col-sm-3">
+                      <label for="ccmonth">Organisation Name</label>
+                      <select class="form-control" id="OrganisationName" formControlName="OrganisationName" placeholder="Organisation Level">
+                        <option *ngFor = "let orglevel of OrganisationLevelArr" [value]="orglevel.OrgLvlId">{{orglevel.LevelName}}</option>
+                      </select>
                     </div>
-                  </div>
-                </div><!--/.col-->
+                    <div class="col-sm-3">
+                            <div class="form-group">
+                              <label for="RoleName">Role Name</label>
+                              <input type="text" formControlName="RoleName" class="form-control" id="RoleName" placeholder="Enter the Role Name" />
+                            </div>
+                          </div>
+                            <div class="form-group">
+                                <div class="row align-items-center">
+                                    <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                                            <label for="ccnumber"></label>
+                                        <button type="button" class="btn btn-block btn-primary" (click)="OnCreate()">Create</button>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                                            <label for="ccnumber"></label>
+                                        <button type="button" class="btn btn-block btn-secondary" (click)="OnCancelBtnClick()">Cancel</button>
+                                    </div>
+                                </div>      
+                            </div>
+                  </div><!--/.row-->
+                </div>
               </div>
-
+            </form>
+          </div><!--/.col-->
+      </div>
         <div class="row" *ngIf="!createRole_flg">
                 <div class="col-lg-12">
                   <div class="card">
@@ -53,7 +51,8 @@
                         <div class="form-group">
                             <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
                                 <label for="ccnumber"></label>
-                                <button type="button" class="btn btn-block btn-primary" (click)=OnCreateNewRoleBtnClick()>Create New Role</button>
+                                <button type="button" class="btn btn-block btn-primary" 
+                                (click)=OnCreateNewRoleBtnClick()>Create New Role</button>
                                 </div>
                             </div>
                         </div>
