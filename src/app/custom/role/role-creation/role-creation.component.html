@@ -69,7 +69,9 @@
                             <td>{{role.RoleName}}</td>
                             <td>{{role.OrganizationLevel.LevelName}}</td>
                             <td>
-                              <span class="badge badge-success">Active</span>
+                              <button type="button" class="btn btn-block btn-primary" (click)="OnEdit(role)">Edit</button>
+                              <button type="button" class="btn btn-block btn-danger" (click)="OnDelete(role)">Edit</button>
+                            
                             </td>
                           </tr>
                           

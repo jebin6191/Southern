@@ -23,4 +23,19 @@ export class RoleService {
     // headers.append('Token', this._headerStorage.getToken());
     return this.http.post(this._url + 'Role/Create', element);
   }
+
+  modifyRoleDetail(element) {
+    debugger;
+    // const headers = new Headers();
+    // headers.append('Token', this._headerStorage.getToken());
+    return this.http.put(this._url + 'Role/Modify', element);
+  }
+
+  deleteRoleDetail(id) {
+    debugger;
+    // const headers = new Headers();
+    // headers.append('Token', this._headerStorage.getToken());
+    // const dataUrl = API_URL + 'Role/Delete/' + id;
+    return this.http.delete(this._url + 'Role/Delete/'+ id);
+  }
 }

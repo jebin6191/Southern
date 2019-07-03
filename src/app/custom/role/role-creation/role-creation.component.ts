@@ -45,8 +45,7 @@ export class RoleCreationComponent implements OnInit {
   OnCreate(){
       const role = new Role();
       role.RoleName = this.RoleCreationForm.value.RoleName;
-      role.OrganizationLevelId =  parseInt(this.RoleCreationForm.value.OrganizationLevelName);
-      console.log(role);
+      role.OrganizationLevelId = this.RoleCreationForm.value.OrganizationLevelName;
       this._roleService.saveNewRole(role).subscribe((res: any) => {
         if (res) {
           alert("Successfully saved");
@@ -54,6 +53,36 @@ export class RoleCreationComponent implements OnInit {
         }
       });
       console.log(role);
+    }
+
+    OnEdit(row){
+      
+      this.RoleCreationForm = row;
+      this.createRole_flg = true;
+
+      console.log(this.RoleCreationForm);
+    }
+
+    OnEditSave(){
+      debugger;
+      const role = new Role();
+      role.RoleName = this.RoleCreationForm.value.RoleName;
+      role.OrganizationLevelId = this.RoleCreationForm.value.OrganizationLevelName;
+      role.RoleId = this.RoleCreationForm.value.RoleId;
+      this._roleService.modifyRoleDetail(role).subscribe((res: any) => {
+        if (res) {
+          alert("Successfully Updated")
+          this.ngOnInit();
+        }
+      });
+    }
+    OnDelete(row){
+      debugger;
+      this._roleService.deleteRoleDetail(row.RoleId).subscribe((data: any) => {
+        if(data){
+          this.ngOnInit();
+        }
+      })
     }
 
   OnCancelBtnClick(){
