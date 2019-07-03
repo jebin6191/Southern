@@ -10,9 +10,9 @@
 
                   <div class="row">
                     <div class="form-group col-sm-3">
-                      <label for="ccmonth">Organisation Name</label>
-                      <select class="form-control" id="OrganisationName" formControlName="OrganisationName" placeholder="Organisation Level">
-                        <option *ngFor = "let orglevel of OrganisationLevelArr" [value]="orglevel.OrgLvlId">{{orglevel.LevelName}}</option>
+                      <label for="OrganizationLevelName">Organization Name</label>
+                      <select class="form-control" id="OrganizationLevelName" formControlName="OrganizationLevelName" placeholder="Organization Level">
+                        <option *ngFor = "let orglvl of OrganizationLevelArr" [value]="orglvl.OrganizationLevelId">{{orglvl.LevelName}}</option>
                       </select>
                     </div>
                     <div class="col-sm-3">

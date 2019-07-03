@@ -43,7 +43,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { RoleService } from './services/role.service';
-import { OrganisationService } from './services/organisation.service';
+import { OrganizationService } from './services/organization.service';
 
 @NgModule({
   imports: [
@@ -75,7 +75,7 @@ import { OrganisationService } from './services/organisation.service';
     useClass: HashLocationStrategy
   },
   RoleService,
-  OrganisationService],
+  OrganizationService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

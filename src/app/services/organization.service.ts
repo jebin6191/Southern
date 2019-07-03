@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class OrganisationService {
+export class OrganizationService {
 
   private _url: string = settings.baseUrl;
   constructor(private http: HttpClient) { }
 
-  getOrganisationLevels() : Observable<any> {
+  getOrganizationLevels() : Observable<any> {
     return this.http.get<any>(this._url +'OrganizationLevel/AllOrganizationLevel');     
   }
 }

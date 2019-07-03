@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { OrganisationLevelComponent } from './organisation-level/organisation-level.component';
+import { OrganizationLevelComponent } from './organization-level/organization-level.component';
 
 const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Organisation'
+      title: 'Organization'
     },
     children: [
       {
         path: '',
-        redirectTo: 'organisation/organisation-level'
+        redirectTo: 'organization/organization-level'
       },
       {
-        path: 'organisation-level',
-        component: OrganisationLevelComponent,
+        path: 'organization-level',
+        component: OrganizationLevelComponent,
         data: {
-          title: 'Organisation Level'
+          title: 'Organization Level'
         }
       }
     ]
@@ -33,4 +33,4 @@ const routes: Routes = [
   ],
   exports:[RouterModule]
 })
-export class OrganisationRoutingModule { }
+export class OrganizationRoutingModule { }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../../../services/role.service';
-import { IRole } from '../../../interfaces/IRole';
-import { OrganisationService } from '../../../services/organisation.service';
+import { OrganizationService } from '../../../services/organization.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Role } from '../../../models/role-library/role.model';
 
 @Component({
   selector: 'app-role-creation',
@@ -12,21 +12,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RoleCreationComponent implements OnInit {
 
   createRole_flg: boolean = false;
-  RolesList: IRole[] = []  ;
-  OrganisationLevelArr : any = [];
+  RolesList: Role[] = []  ;
+  OrganizationLevelArr : any = [];
   RoleCreationForm: FormGroup;
 
-  constructor(private _roleService: RoleService, private _organisationService : OrganisationService, 
+  constructor(private _roleService: RoleService, private _organizationService : OrganizationService, 
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-
+    this.createRole_flg = false;
     this.RoleCreationForm = this.formBuilder.group({
-      OrganisationName: ['', Validators.required],
+      OrganizationLevelName: ['', Validators.required],
       RoleName: ['', Validators.required]
   })
     this.GetAllRoles();
-    this.OrganisationLevels();
+    this.OrganizationLevels();
   }
 
   GetAllRoles(){
@@ -43,16 +43,26 @@ export class RoleCreationComponent implements OnInit {
   }
    
   OnCreate(){
-    console.log(this.RoleCreationForm);
-  }
+      const role = new Role();
+      role.RoleName = this.RoleCreationForm.value.RoleName;
+      role.OrganizationLevelId =  parseInt(this.RoleCreationForm.value.OrganizationLevelName);
+      console.log(role);
+      this._roleService.saveNewRole(role).subscribe((res: any) => {
+        if (res) {
+          alert("Successfully saved");
+          this.ngOnInit();
+        }
+      });
+      console.log(role);
+    }
 
   OnCancelBtnClick(){
     this.createRole_flg = false;
   }
 
-  OrganisationLevels() {
-    this._organisationService.getOrganisationLevels().subscribe(
-      res => { this.OrganisationLevelArr = res
+  OrganizationLevels() {
+    this._organizationService.getOrganizationLevels().subscribe(
+      res => { this.OrganizationLevelArr = res
       });
   }
 

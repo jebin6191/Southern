@@ -60,7 +60,7 @@ export const routes: Routes = [
       },
       {
         path: 'organisation',
-        loadChildren: () => import('./custom/organisation/organisation.module').then(m => m.OrganisationModule)
+        loadChildren: () => import('./custom/organization/organization.module').then(m => m.OrganisationModule)
       },
       {
         path: 'base',

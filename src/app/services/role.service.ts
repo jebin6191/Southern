@@ -5,7 +5,6 @@ import { settings } from '../../../settings';
 
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -19,4 +18,9 @@ export class RoleService {
     return this.http.get<any>(this._url +'Role/AllRoles');     
   }
 
+  saveNewRole(element) {
+    // const headers = new Headers();
+    // headers.append('Token', this._headerStorage.getToken());
+    return this.http.post(this._url + 'Role/Create', element);
+  }
 }
