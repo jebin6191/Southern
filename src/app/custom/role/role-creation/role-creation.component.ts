@@ -22,7 +22,9 @@ export class RoleCreationComponent implements OnInit {
 
   ngOnInit() {
     this.IsCreate = false;
+    this.IsEdit = false;
     this.RoleCreationForm = this.formBuilder.group({
+      RoleId:[''],
       OrganizationLevelName: ['', Validators.required],
       RoleName: ['', Validators.required]
   })
@@ -58,10 +60,11 @@ export class RoleCreationComponent implements OnInit {
 
     OnEdit(row){
       
-      this.IsCreate = true;
+      this.IsEdit = true;
       this.RoleCreationForm.setValue({
         RoleName : row.RoleName,
-        OrganizationLevelName : row.OrganizationLevelId
+        OrganizationLevelName : row.OrganizationLevelId,
+        RoleId : row.RoleId
       })
       // this.RoleCreationForm.controls.RoleName.setValue(row.RoleName)
       // this.RoleCreationForm.controls.OrganizationLevelName.setValue(row.OrganizationLevelId)
@@ -69,7 +72,7 @@ export class RoleCreationComponent implements OnInit {
       console.log(this.RoleCreationForm);
     }
 
-    OnEditSave(){
+    OnUpdateBtnClick(){
       debugger;
       const role = new Role();
       role.RoleName = this.RoleCreationForm.value.RoleName;
@@ -93,6 +96,7 @@ export class RoleCreationComponent implements OnInit {
 
   OnCancelBtnClick(){
     this.IsCreate = false;
+    this.IsEdit = false;
   }
 
   OrganizationLevels() {
