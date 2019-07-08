@@ -11,7 +11,8 @@ import { Role } from '../../../models/role-library/role.model';
 })
 export class RoleCreationComponent implements OnInit {
 
-  createRole_flg: boolean = false;
+  IsCreate: boolean = false;
+  IsEdit: boolean = false;
   RolesList: Role[] = []  ;
   OrganizationLevelArr : any = [];
   RoleCreationForm: FormGroup;
@@ -20,7 +21,7 @@ export class RoleCreationComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.createRole_flg = false;
+    this.IsCreate = false;
     this.RoleCreationForm = this.formBuilder.group({
       OrganizationLevelName: ['', Validators.required],
       RoleName: ['', Validators.required]
@@ -39,7 +40,7 @@ export class RoleCreationComponent implements OnInit {
   }
 
   OnCreateNewRoleBtnClick(){
-    this.createRole_flg = true;
+    this.IsCreate = true;
   }
    
   OnCreate(){
@@ -57,8 +58,13 @@ export class RoleCreationComponent implements OnInit {
 
     OnEdit(row){
       
-      this.RoleCreationForm = row;
-      this.createRole_flg = true;
+      this.IsCreate = true;
+      this.RoleCreationForm.setValue({
+        RoleName : row.RoleName,
+        OrganizationLevelName : row.OrganizationLevelId
+      })
+      // this.RoleCreationForm.controls.RoleName.setValue(row.RoleName)
+      // this.RoleCreationForm.controls.OrganizationLevelName.setValue(row.OrganizationLevelId)
 
       console.log(this.RoleCreationForm);
     }
@@ -86,7 +92,7 @@ export class RoleCreationComponent implements OnInit {
     }
 
   OnCancelBtnClick(){
-    this.createRole_flg = false;
+    this.IsCreate = false;
   }
 
   OrganizationLevels() {

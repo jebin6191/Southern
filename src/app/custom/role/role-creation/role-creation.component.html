@@ -1,5 +1,5 @@
 <div class="animated fadeIn">
-      <div class="row" *ngIf="createRole_flg">
+      <div class="row" *ngIf="IsCreate">
           <div class="col-sm-12">
             <form [formGroup]="RoleCreationForm">
               <div class="card">
@@ -25,7 +25,8 @@
                                 <div class="row align-items-center">
                                     <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
                                             <label for="ccnumber"></label>
-                                        <button type="button" class="btn btn-block btn-primary" (click)="OnCreate()">Create</button>
+                                        <button type="button" class="btn btn-block btn-primary" *ngIf="IsCreate" (click)="OnCreate()">Create</button>
+                                        <button type="button" class="btn btn-block btn-success" *ngIf="IsEdit" (click)="OnCreate()">Update</button>
                                     </div>
                                     <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
                                             <label for="ccnumber"></label>
@@ -39,7 +40,7 @@
             </form>
           </div><!--/.col-->
       </div>
-        <div class="row" *ngIf="!createRole_flg">
+        <div class="row" *ngIf="!IsCreate">
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header">
@@ -70,7 +71,7 @@
                             <td>{{role.OrganizationLevel.LevelName}}</td>
                             <td>
                               <button type="button" class="btn btn-block btn-primary" (click)="OnEdit(role)">Edit</button>
-                              <button type="button" class="btn btn-block btn-danger" (click)="OnDelete(role)">Edit</button>
+                              <button type="button" class="btn btn-block btn-danger" (click)="OnDelete(role)">Delete</button>
                             
                             </td>
                           </tr>
