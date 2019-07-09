@@ -30,11 +30,11 @@ export class LoginService {
 
     login(obj){
         debugger;
-        const body = JSON.stringify({ UserName: obj.Username, Password: obj.password });
-        return this._httpClient.post<any>(API_URL + 'login ', { UserName: obj.Username, Password: obj.password },
+        const body = JSON.stringify({ UserName: obj.UserName, Password: obj.Password });
+        return this._httpClient.post<any>(API_URL + 'login ', { UserName: obj.UserName, Password: obj.Password },
             {
                 headers: new HttpHeaders().set('Authorization', 'Basic ' +
-                    btoa(obj.Username + ":" + obj.password)), observe: 'response'
+                    btoa(obj.UserName + ":" + obj.Password)), observe: 'response'
             }).do(response => {
                 debugger;
                 if (response.status == 200) {

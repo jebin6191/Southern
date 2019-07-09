@@ -45,11 +45,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoleService } from './services/administrator/role-library/role.service';
 import { OrganizationlevelService } from './services/administrator/organization/organization-level.service';
 import { LoginService } from './services/login/login.service';
+import { HttpModule } from '@angular/http';
+import { HeaderStorageService } from './services/header-storage.service';
 
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AppAsideModule,
@@ -76,6 +79,7 @@ import { LoginService } from './services/login/login.service';
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
+  HeaderStorageService,
   RoleService,
   OrganizationlevelService,
   LoginService],
