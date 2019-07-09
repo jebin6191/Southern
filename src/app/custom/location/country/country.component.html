@@ -1,1 +1,87 @@
-<p>country works!</p>
+<div class="animated fadeIn">
+    <div class="row" *ngIf="IsCreate || IsEdit">
+        <div class="col-sm-12">
+          <form [formGroup]="RoleCreationForm">
+            <div class="card">
+              <div class="card-header">
+                <strong>Country Creation</strong>
+              </div>
+              <div class="card-body">
+                <input type="hidden" formControlName="CountryId" class="form-control" id="CountryId" />
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                        <label for="CountryName">Role Name</label>
+                        <input type="text" formControlName="CountryName" class="form-control" id="CountryName" placeholder="Enter the Country Name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row align-items-center">
+                            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                                    <label for="ccnumber"></label>
+                                <button type="button" class="btn btn-block btn-primary" *ngIf="IsCreate" (click)="OnCreate()">Create</button>
+                                <button type="button" class="btn btn-block btn-success" *ngIf="IsEdit" (click)="OnUpdateBtnClick()">Update</button>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                                    <label for="ccnumber"></label>
+                                <button type="button" class="btn btn-block btn-secondary" (click)="OnCancelBtnClick()">Cancel</button>
+                            </div>
+                        </div>      
+                    </div>
+                </div><!--/.row-->
+              </div>
+            </div>
+          </form>
+        </div><!--/.col-->
+    </div>
+      <div class="row" *ngIf="!IsCreate && !IsEdit">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-header">
+                    <i class="fa fa-align-justify"></i> <strong>List Of Available Countries</strong>
+                  </div>
+                  <div class="card-body">
+
+                  <div class="row align-items-center">
+                      <div class="form-group">
+                          <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                              <label for="ccnumber"></label>
+                              <button type="button" class="btn btn-block btn-primary" 
+                              (click)=OnCreateNewCountryBtnClick()>Create New Country</button>
+                              </div>
+                          </div>
+                      </div>
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Country Name</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let country of CountryList">
+                          <td>{{country.CountryName}}</td>
+                          <td>
+                            <button type="button" class="btn btn-primary" (click)="OnEdit(country)">Edit</button>
+                            <button type="button" class="btn btn-danger" (click)="OnDelete(country)">Delete</button>
+                          </td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                    <ul class="pagination">
+                      <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                      <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">4</a></li>
+                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--/.col-->
+          </div>
+  </div>

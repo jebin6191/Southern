@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrganizationService } from '../../../services/organization.service';
+import { OrganizationlevelService } from '../../../services/administrator/organization/organization-level.service';
 
 @Component({
   selector: 'app-organization-level',
@@ -8,14 +8,14 @@ import { OrganizationService } from '../../../services/organization.service';
 })
 export class OrganizationLevelComponent implements OnInit {
 
-  constructor(private _organizationService : OrganizationService) { }
+  constructor(private _organizationService : OrganizationlevelService) { }
 
   OrganizationLevelArr : any = [];
   ngOnInit() {
   }
 
   OrganizationLevels() {
-    this._organizationService.getOrganizationLevels().subscribe(
+    this._organizationService.listOrganizationLevel().subscribe(
       res => { this.OrganizationLevelArr = res
       })
   }

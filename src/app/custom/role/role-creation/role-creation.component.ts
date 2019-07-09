@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RoleService } from '../../../services/role.service';
-import { OrganizationService } from '../../../services/organization.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Role } from '../../../models/role-library/role.model';
+import { RoleService } from '../../../services/administrator/role-library/role.service';
+import { OrganizationlevelService } from '../../../services/administrator/organization/organization-level.service';
 
 @Component({
   selector: 'app-role-creation',
@@ -17,7 +17,7 @@ export class RoleCreationComponent implements OnInit {
   OrganizationLevelArr : any = [];
   RoleCreationForm: FormGroup;
 
-  constructor(private _roleService: RoleService, private _organizationService : OrganizationService, 
+  constructor(private _roleService: RoleService, private _organizationService : OrganizationlevelService, 
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -33,7 +33,7 @@ export class RoleCreationComponent implements OnInit {
   }
 
   GetAllRoles(){
-    this._roleService.getRoles()
+    this._roleService.listRoleDetails()
     .subscribe( 
       res => { this.RolesList = res; 
       }, 
@@ -49,7 +49,7 @@ export class RoleCreationComponent implements OnInit {
       const role = new Role();
       role.RoleName = this.RoleCreationForm.value.RoleName;
       role.OrganizationLevelId = this.RoleCreationForm.value.OrganizationLevelName;
-      this._roleService.saveNewRole(role).subscribe((res: any) => {
+      this._roleService.saveRoleDetail(role).subscribe((res: any) => {
         if (res) {
           alert("Successfully saved");
           this.ngOnInit();
@@ -100,7 +100,7 @@ export class RoleCreationComponent implements OnInit {
   }
 
   OrganizationLevels() {
-    this._organizationService.getOrganizationLevels().subscribe(
+    this._organizationService.listOrganizationLevel().subscribe(
       res => { this.OrganizationLevelArr = res
       });
   }

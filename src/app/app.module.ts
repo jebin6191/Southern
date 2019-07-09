@@ -42,8 +42,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
-import { RoleService } from './services/role.service';
-import { OrganizationService } from './services/organization.service';
+import { RoleService } from './services/administrator/role-library/role.service';
+import { OrganizationlevelService } from './services/administrator/organization/organization-level.service';
+import { LoginService } from './services/login/login.service';
+
 
 @NgModule({
   imports: [
@@ -75,7 +77,8 @@ import { OrganizationService } from './services/organization.service';
     useClass: HashLocationStrategy
   },
   RoleService,
-  OrganizationService],
+  OrganizationlevelService,
+  LoginService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
