@@ -47,6 +47,8 @@ import { OrganizationlevelService } from './services/administrator/organization/
 import { LoginService } from './services/login/login.service';
 import { HttpModule } from '@angular/http';
 import { HeaderStorageService } from './services/header-storage.service';
+import { CountryService } from './services/administrator/location/country.service';
+import { StateService } from './services/administrator/location/state.serivce';
 
 
 @NgModule({
@@ -82,7 +84,10 @@ import { HeaderStorageService } from './services/header-storage.service';
   HeaderStorageService,
   RoleService,
   OrganizationlevelService,
-  LoginService],
+  LoginService,
+  CountryService,
+  StateService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

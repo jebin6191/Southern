@@ -70,7 +70,9 @@ export class CountryService {
     // }
 
     deleteCountryDetail(element): Observable<any> {
-        return this._httpClient.delete<any>(API_URL + "Country/Delete/" + element.CountryId)
+
+
+        return this._httpClient.delete<any>(API_URL + "Country/Delete/" + element)
             .pipe(catchError(this.handleError));
     }
 

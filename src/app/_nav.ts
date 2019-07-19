@@ -83,6 +83,21 @@ export const navItems: NavData[] = [
         name:'Country',
         url:'/location/country',
         icon:'icon-flag'
+      },
+      {
+        name:'State',
+        url:'/location/state',
+        icon:'icon-flag'
+      },
+      {
+        name:'City',
+        url:'/location/city',
+        icon:'icon-flag'
+      },
+      {
+        name:'Area',
+        url:'/location/area',
+        icon:'icon-flag'
       }
     ]
   },

@@ -1,7 +1,7 @@
 <div class="animated fadeIn">
     <div class="row" *ngIf="IsCreate || IsEdit">
         <div class="col-sm-12">
-          <form [formGroup]="CreateCountryForm">
+          <form [formGroup]="CreateStateForm">
             <div class="card">
               <div class="card-header">
                 <strong>Country Creation</strong>
@@ -9,10 +9,17 @@
               <div class="card-body">
                 <input type="hidden" formControlName="CountryId" class="form-control" id="CountryId" />
 
+                <div class="form-group col-sm-3">
+                    <label for="CountryName">Country</label>
+                    <select class="form-control" id="CountryName" formControlName="CountryName" placeholder="Countries">
+                      <option *ngFor = "let orglvl of OrganizationLevelArr" [value]="orglvl.OrganizationLevelId">{{orglvl.LevelName}}</option>
+                    </select>
+                  </div>
+
                     <div class="col-sm-3">
                         <div class="form-group">
-                        <label for="CountryName">Country Name</label>
-                        <input type="text" formControlName="CountryName" class="form-control" id="CountryName" placeholder="Enter the Country Name" />
+                        <label for="CountryName">State Name</label>
+                        <input type="text" formControlName="StateName" class="form-control" id="StateName" placeholder="Enter the State Name" />
                         </div>
                     </div>
                     <div class="form-group">
