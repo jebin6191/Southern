@@ -42,7 +42,7 @@ export class RoleCreationComponent implements OnInit {
     this.IsEdit = false;
     this.RoleCreationForm = this.formBuilder.group({
       RoleId:[''],
-      OrganizationLevelName: ['', Validators.required],
+      OrganizationLevelName: [null, Validators.required],
       RoleName: ['', Validators.required]
   })
     this.GetAllRoles();
@@ -53,6 +53,7 @@ export class RoleCreationComponent implements OnInit {
   }
 
   GetAllRoles(){
+  
     this._roleService.listRoleDetails()
     .subscribe( 
       res => { this.RolesList = res;
@@ -116,8 +117,10 @@ export class RoleCreationComponent implements OnInit {
   }
 
   OrganizationLevels() {
+
     this._organizationService.listOrganizationLevel().subscribe(
       res => { this.OrganizationLevelArr = res
+
       });
   }
 

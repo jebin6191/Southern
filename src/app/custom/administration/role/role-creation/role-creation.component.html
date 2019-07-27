@@ -12,17 +12,19 @@
                     <div class="form-group col-sm-3">
                       <label for="OrganizationLevelName">Organization Name</label>
                       <select class="form-control" id="OrganizationLevelName" formControlName="OrganizationLevelName" placeholder="Organization Level">
+                        <option [value]="null">Select Organization Level</option>
                         <option *ngFor = "let orglvl of OrganizationLevelArr" [value]="orglvl.OrganizationLevelId">{{orglvl.LevelName}}</option>
                       </select>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                             <div class="form-group">
                               <label for="RoleName">Role Name</label>
                               <input type="text" formControlName="RoleName" class="form-control" id="RoleName" placeholder="Enter the Role Name" />
                             </div>
                           </div>
+                          <div class="col-sm-3">
                             <div class="form-group">
-                                <div class="row align-items-center">
+                                <div class="row align-items-center" style="margin-top:7px">
                                     <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
                                             <label for="ccnumber"></label>
                                         <button type="button" class="btn btn-block btn-primary" *ngIf="IsCreate" (click)="OnCreate()">Create</button>
@@ -34,6 +36,7 @@
                                     </div>
                                 </div>      
                             </div>
+                          </div>
                   </div><!--/.row-->
                 </div>
               </div>

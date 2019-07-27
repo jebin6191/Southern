@@ -46,8 +46,9 @@ export class StateComponent implements OnInit {
         });
     }
 
-    OnCreateNewCountryBtnClick(){
+    OnCreateNewStateBtnClick(){
       this.IsCreate = true;
+      this.IsEdit = false;
     }
 
     OnCreate(){
