@@ -1,30 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CountryService } from '../../../services/administrator/location/country.service';
-import { CountryEntity } from '../../../models/location/country.model';
-import { StateService } from '../../../services/administrator/location/state.serivce';
+import { CountryService } from '../../../../services/administrator/location/country.service';
+import { CountryEntity } from '../../../../models/location/country.model';
 
 @Component({
-  selector: 'app-state',
-  templateUrl: './state.component.html',
-  styleUrls: ['./state.component.scss']
+  selector: 'app-country',
+  templateUrl: './country.component.html'
 })
-export class StateComponent implements OnInit {
+export class CountryComponent implements OnInit {
 
   IsCreate: boolean = false;
   IsEdit: boolean = false;
-  CreateStateForm: FormGroup;
+  CreateCountryForm: FormGroup;
   CountryList : any =[];
 
-  constructor(private _countryService: CountryService, private _stateService: StateService, private formBuilder: FormBuilder) { }
+  constructor(private _countryService: CountryService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.IsCreate = false;
     this.IsEdit = false;
   
-      this.CreateStateForm = this.formBuilder.group({
-        StateId: [''],
-        CountryId:['', Validators.required],
+      this.CreateCountryForm = this.formBuilder.group({
+        CountryId:[''],
         CountryName: ['', Validators.required]
     })
     this.GetAll();
@@ -33,7 +30,7 @@ export class StateComponent implements OnInit {
     OnEdit(row){
       
       this.IsEdit = true;
-      this.CreateStateForm.setValue({
+      this.CreateCountryForm.setValue({
         CountryId : row.CountryId,
         CountryName : row.CountryName
       })
@@ -53,7 +50,7 @@ export class StateComponent implements OnInit {
 
     OnCreate(){
        const country = new CountryEntity();
-       country.CountryName = this.CreateStateForm.value.CountryName;
+       country.CountryName = this.CreateCountryForm.value.CountryName;
       this._countryService.saveCountryDetail(country).subscribe((res: any) => {
         if (res) {
           alert("Successfully Updated")
@@ -65,8 +62,8 @@ export class StateComponent implements OnInit {
     OnUpdateBtnClick(){
       debugger;
       const country = new CountryEntity();
-      country.CountryName = this.CreateStateForm.value.CountryName;
-      country.CountryId = this.CreateStateForm.value.CountryId;
+      country.CountryName = this.CreateCountryForm.value.CountryName;
+      country.CountryId = this.CreateCountryForm.value.CountryId;
       this._countryService.updateCountryDetail(country).subscribe((res: any) => {
         if (res) {
           alert("Successfully Updated")
@@ -89,5 +86,4 @@ export class StateComponent implements OnInit {
     this.IsCreate = false;
     this.IsEdit = false;
   }
-
 }

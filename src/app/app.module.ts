@@ -49,7 +49,7 @@ import { HttpModule } from '@angular/http';
 import { HeaderStorageService } from './services/header-storage.service';
 import { CountryService } from './services/administrator/location/country.service';
 import { StateService } from './services/administrator/location/state.serivce';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -66,7 +66,8 @@ import { StateService } from './services/administrator/location/state.serivce';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    NgxPaginationModule
     
   ],
   declarations: [
@@ -75,7 +76,7 @@ import { StateService } from './services/administrator/location/state.serivce';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   providers: [{
     provide: LocationStrategy,

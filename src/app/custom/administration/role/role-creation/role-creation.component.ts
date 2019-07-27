@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Role } from '../../../models/role-library/role.model';
-import { RoleService } from '../../../services/administrator/role-library/role.service';
-import { OrganizationlevelService } from '../../../services/administrator/organization/organization-level.service';
+import { Role } from '../../../../models/role-library/role.model';
+import { RoleService } from '../../../../services/administrator/role-library/role.service';
+import { OrganizationlevelService } from '../../../../services/administrator/organization/organization-level.service';
 
 @Component({
   selector: 'app-role-creation',
@@ -16,6 +16,23 @@ export class RoleCreationComponent implements OnInit {
   RolesList: Role[] = []  ;
   OrganizationLevelArr : any = [];
   RoleCreationForm: FormGroup;
+  config = {
+    itemsPerPage: 5,
+    currentPage: 1,
+    totalItems: 20
+  };
+
+  maxSize: number = 7;
+  public directionLinks: boolean = true;
+  public autoHide: boolean = false;
+  public responsive: boolean = true;
+  public labels: any = {
+      previousLabel: 'Previous',
+      nextLabel: 'Next',
+      screenReaderPaginationLabel: 'Pagination',
+      screenReaderPageLabel: 'page',
+      screenReaderCurrentLabel: 'Youre on page'
+  }
 
   constructor(private _roleService: RoleService, private _organizationService : OrganizationlevelService, 
     private formBuilder: FormBuilder) { }
@@ -31,11 +48,15 @@ export class RoleCreationComponent implements OnInit {
     this.GetAllRoles();
     this.OrganizationLevels();
   }
+  onPageChange(event){
+    this.config.currentPage = event;
+  }
 
   GetAllRoles(){
     this._roleService.listRoleDetails()
     .subscribe( 
-      res => { this.RolesList = res; 
+      res => { this.RolesList = res;
+        this.config.totalItems = this.RolesList.length; 
       }, 
       err => console.log(err)
       );
@@ -44,7 +65,7 @@ export class RoleCreationComponent implements OnInit {
   OnCreateNewRoleBtnClick(){
     this.IsCreate = true;
   }
-   
+
   OnCreate(){
       const role = new Role();
       role.RoleName = this.RoleCreationForm.value.RoleName;
@@ -58,18 +79,13 @@ export class RoleCreationComponent implements OnInit {
       console.log(role);
     }
 
-    OnEdit(row){
-      
+    OnEdit(row){     
       this.IsEdit = true;
       this.RoleCreationForm.setValue({
         RoleName : row.RoleName,
         OrganizationLevelName : row.OrganizationLevelId,
         RoleId : row.RoleId
       })
-      // this.RoleCreationForm.controls.RoleName.setValue(row.RoleName)
-      // this.RoleCreationForm.controls.OrganizationLevelName.setValue(row.OrganizationLevelId)
-
-      console.log(this.RoleCreationForm);
     }
 
     OnUpdateBtnClick(){

@@ -52,15 +52,19 @@ export const routes: Routes = [
     children: [
       {
         path: 'role',
-        loadChildren: () => import('./custom/role/role.module').then(m => m.RoleModule)
+        loadChildren: () => import('./custom/administration/role/role.module').then(m => m.RoleModule)
       },
       {
         path: 'location',
-        loadChildren: () => import('./custom/location/location.module').then(m => m.LocationModule)
+        loadChildren: () => import('./custom/administration/location/location.module').then(m => m.LocationModule)
       },
       {
-        path: 'organisation',
-        loadChildren: () => import('./custom/organization/organization.module').then(m => m.OrganisationModule)
+        path: 'organization',
+        loadChildren: () => import('./custom/administration/organization/organization.module').then(m => m.OrganisationModule)
+      },
+      {
+        path: 'hr',
+        loadChildren: () => import('./custom/human-resource/human-resource.module').then(m => m.HumanResourceModule)
       },
       {
         path: 'base',

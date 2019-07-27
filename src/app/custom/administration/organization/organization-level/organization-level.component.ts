@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrganizationlevelService } from '../../../services/administrator/organization/organization-level.service';
+import { OrganizationlevelService } from '../../../../services/administrator/organization/organization-level.service';
 
 @Component({
   selector: 'app-organization-level',

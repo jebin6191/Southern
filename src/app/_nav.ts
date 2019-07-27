@@ -110,6 +110,27 @@ export const navItems: NavData[] = [
         name:'Organisation Level',
         url:'/organisation/organisation-level',
         icon:'icon-flag'
+      },
+      {
+        name:'Company Initiation',
+        url:'/organisation/company-initiation',
+        icon:'icon-flag'
+      }
+    ]
+  },
+  {
+    title: true,
+    name: 'HUMAN RESOURCE'
+  },
+  {
+    name: 'HumanResource',
+    url: '/hr',
+    icon: 'icon-user',
+    children:[
+      {
+        name:'Employee',
+        url:'/hr/employee',
+        icon:'icon-user'
       }
     ]
   },

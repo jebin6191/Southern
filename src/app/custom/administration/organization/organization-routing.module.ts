@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { OrganizationLevelComponent } from './organization-level/organization-level.component';
+import { CompanyInitiationComponent } from './company-initiation/company-initiation.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,13 @@ const routes: Routes = [
         component: OrganizationLevelComponent,
         data: {
           title: 'Organization Level'
+        }
+      },
+      {
+        path: 'company-initiation',
+        component: CompanyInitiationComponent,
+        data: {
+          title: 'Company Initiation'
         }
       }
     ]
