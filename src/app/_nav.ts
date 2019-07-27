@@ -102,18 +102,18 @@ export const navItems: NavData[] = [
     ]
   },
   {
-    name: 'Organisattion',
-    url: '/organisation',
+    name: 'Organization',
+    url: '/organization',
     icon: 'icon-directions',
     children:[
       {
-        name:'Organisation Level',
-        url:'/organisation/organisation-level',
+        name:'Organization Level',
+        url:'/organization/organization-level',
         icon:'icon-flag'
       },
       {
         name:'Company Initiation',
-        url:'/organisation/company-initiation',
+        url:'/organization/company-initiation',
         icon:'icon-flag'
       }
     ]
