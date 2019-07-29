@@ -41,6 +41,8 @@ export class EmployeeComponent implements OnInit {
       ReferenceContact2 : ['', Validators.required],
       PreviousCompany : ['', Validators.required],
       JobType : ['', Validators.required],
+
+      
     })
   }
 
