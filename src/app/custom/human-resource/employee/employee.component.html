@@ -86,7 +86,7 @@
                                 <label class="col-sm-2 col-form-label" for="input-normal">Medical Exam</label>
                                 <div class="col-sm-6">
                                     <label class="switch switch-3d switch-danger">
-                                            <input checked="" class="switch-input" type="checkbox">
+                                            <input checked="" class="switch-input" type="checkbox" id="">
                                     <span class="switch-slider"></span>
                                     </label>
                                 </div>
@@ -112,64 +112,66 @@
                                     <option>Prakash</option>
                                 </select>
                             </div>
+                        <div class="form-group">
+                            <label for="NativePlace">Native Place</label>
+                            <input type="text" class="form-control" id="NativePlace" placeholder="Enter the Native Place">
+                            </div>
                         </div>
                     </div>
                 </div><!--/.col-->
                 <div class="col-sm-12">
                     <div class="card">
-                            <div class="card-header">
-                            <strong>Contact and Personal Details</strong>
-                            </div>
-                            <div class="card-body">
-                                    <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="CurrentAddress">Present Address</label>
-                                        <textarea class="form-control" id="CurrentAddress" name="textarea-input" placeholder="Present Address..." rows="4"></textarea>
+                        <div class="card-header">
+                        <strong>Contact and Personal Details</strong>
+                        </div>
+                        <div class="card-body">
+                                <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="CurrentAddress">Present Address</label>
+                                    <textarea class="form-control" id="CurrentAddress" name="textarea-input" placeholder="Present Address..." rows="4"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="State">State</label>
+                                    <select class="form-control" id="State">
+                                            <option>Tamil Nadu</option>
+                                            <option>Kerala</option>
+                                            <option>Karnataka</option>
+                                            <option>Andhra Pradesh</option>
+                                        </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="street">City</label>
+                                    <select class="form-control" id="City">
+                                            <option>Chennai</option>
+                                            <option>Madurai</option>
+                                            <option>Bangalore</option>
+                                            <option>Wayanad</option>
+                                        </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox"/>
+                                        <label for="company"><h5>Is Present Address and Permenant Address are Same</h5></label>
+                                    </div>
+                                <div class="form-group">
+                                        <label for="company">Permenant Address</label>
+                                        <textarea class="form-control" id="PermanentAddress" name="textarea-input" placeholder="Permenant Address..." rows="4"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="State">State</label>
-                                        <select class="form-control" id="State">
-                                                <option>Tamil Nadu</option>
-                                                <option>Kerala</option>
-                                                <option>Karnataka</option>
-                                                <option>Andhra Pradesh</option>
-                                            </select>
+                                        <label for="AdhaarNo">Adhaar No</label>
+                                        <input type="text" class="form-control" id="AdhaarNo" placeholder="Enter the Adhaar No">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="street">City</label>
-                                        <select class="form-control" id="City">
-                                                <option>Chennai</option>
-                                                <option>Madurai</option>
-                                                <option>Bangalore</option>
-                                                <option>Wayanad</option>
-                                            </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="checkbox"/>
-                                            <label for="company"><h5>Is Present Address and Permenant Address are Same</h5></label>
-                                        </div>
-                                    <div class="form-group">
-                                            <label for="company">Permenant Address</label>
-                                            <textarea class="form-control" id="PermanentAddress" name="textarea-input" placeholder="Permenant Address..." rows="4"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="AdhaarNo">Adhaar No</label>
-                                            <input type="text" class="form-control" id="AdhaarNo" placeholder="Enter the Adhaar No">
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="AlternateContactNo">Alternate Contact No</label>
-                                            <input type="text" class="form-control" id="AlternateContactNo" placeholder="Enter Alternate ContactNo">
-                                        </div>
-                                        
+                                    <div class="form-group">
+                                        <label for="AlternateContactNo">Alternate Contact No</label>
+                                        <input type="text" class="form-control" id="AlternateContactNo" placeholder="Enter Alternate ContactNo">
+                                    </div>                                       
                                 </div>
                                 <div class="col-sm-6"> 
                                     <div class="form-group">
                                             <label for="MotherName">Mother Name</label>
                                             <input type="text" class="form-control" id="MotherName" placeholder="Enter the Mother name">
                                         </div>
-
                                     <div class="form-group">
                                         <label for="BloodGroup">Blood Group</label>
                                         <select class="form-control" id="BloodGroup">
@@ -265,10 +267,12 @@
                                 <table class="table table-striped">
                                   <thead>
                                     <tr>
-                                      <th>Username</th>
-                                      <th>Date registered</th>
-                                      <th>Role</th>
-                                      <th>Status</th>
+                                      <th>Account Number</th>
+                                      <th>Bank Name</th>
+                                      <th>IFSC Code</th>
+                                      <th>Branch Name</th>
+                                      <th>MICR Code</th>
+                                      <th>IsPrimary</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -276,42 +280,13 @@
                                       <td>Yiorgos Avraamu</td>
                                       <td>2012/01/01</td>
                                       <td>Member</td>
-                                      <td>
-                                        <span class="badge badge-success">Active</span>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>Avram Tarasios</td>
-                                      <td>2012/02/01</td>
-                                      <td>Staff</td>
-                                      <td>
-                                        <span class="badge badge-danger">Banned</span>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>Quintin Ed</td>
-                                      <td>2012/02/01</td>
-                                      <td>Admin</td>
-                                      <td>
-                                        <span class="badge badge-secondary">Inactive</span>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>Enéas Kwadwo</td>
-                                      <td>2012/03/01</td>
+                                      <td>2012/01/01</td>
                                       <td>Member</td>
                                       <td>
-                                        <span class="badge badge-warning">Pending</span>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>Agapetus Tadeáš</td>
-                                      <td>2012/01/21</td>
-                                      <td>Staff</td>
-                                      <td>
                                         <span class="badge badge-success">Active</span>
                                       </td>
                                     </tr>
+                                   
                                   </tbody>
                                 </table>
                               </div>
