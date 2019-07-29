@@ -4,11 +4,7 @@ import { throwError, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { settings } from '../../../../settings';
 
-
 const API_URL = settings.apiUrl;
-
-
-
 
 @Injectable({
   providedIn: "root"
