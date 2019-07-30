@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmployeeMasterService } from '../../../services/master/employee.master.service';
-import { ThemeService } from 'ng2-charts';
 
 @Component({
   selector: 'app-employee',
@@ -19,6 +18,11 @@ export class EmployeeComponent implements OnInit {
   stateData: any = [];
   BankData: any = [];
   BankForm: FormGroup;
+  submitted = false;
+  imageSrc: string;
+  designationData: any =[];
+  reportData:any = [];
+  bloodGroupData = [{ Name: 'A+' }, { Name: 'A-' }, { Name: 'B+' }, { Name: 'B-' }, { Name: 'O+' }, { Name: 'O-' }, { Name: 'AB+' }, { Name: 'AB-' }]
 
   constructor(private formBuilder: FormBuilder, private _employeeMasterService : EmployeeMasterService) { }
 
@@ -52,7 +56,7 @@ export class EmployeeComponent implements OnInit {
       PreviousCompany : ['', Validators.required],
       JobType : ['', Validators.required],
       NativePlace : ['', Validators.required],
-      ShowBankDetails:  ['', Validators.required]
+      ShowBankDetails:  [false]
     })
 
     this.BankForm = this.formBuilder.group({
@@ -70,6 +74,7 @@ export class EmployeeComponent implements OnInit {
     this.getAllState();
   }
 
+    get f() { return this.EmployeeForm.controls; }
 
   // BankDetails: any = {
   //   EmployeeBankId: 0,
@@ -91,7 +96,20 @@ export class EmployeeComponent implements OnInit {
   OnCancelBtnClick(){
     this.IsCreate = false;
     this.IsEdit = false;
+    this.submitted = false;
   }
+
+  readURL(event: Event): void {
+    let ev = (<HTMLInputElement>event.target);
+    if (ev.files && ev.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = (event:any) => {
+     this.imageSrc = event.target.result;
+    }
+      reader.readAsDataURL(ev.files[0]);
+  }
+}
 
 
   LoadEmployeeMaster(): void {
@@ -152,8 +170,43 @@ export class EmployeeComponent implements OnInit {
     );
   }
 
+  getDesignation(val): void {
+    let CompanyId =  parseInt(val.target.value);
+    this._employeeMasterService.getDesignationById(CompanyId).subscribe(
+      (result: any) => {
+        this.designationData = result;
+      },
+      error => {
+        if (error.status === 401) {
+          alert("Unauthorized");
+        } else {
+          alert("Something went wrong! Try Again");
+        }
+      }
+    );
+  }
+
+  getReportTo(): void {
+    debugger;
+    let element = {
+      EmployeeId: this.employeeDetail.EmployeeId,
+      ActionBy: sessionStorage.getItem('UserID')
+    }
+    this._employeeMasterService.getReport(element).subscribe(
+      (result: any) => {
+        debugger;
+        this.reportData = result.result;
+      },
+      error => {
+        if (error.status === 401) { alert("Unauthorized"); }
+        else { alert("Something went wrong! Try Again"); }
+      }
+    );
+  }
+
   OnCreateNewEmployeeBtnClick(){
     this.IsCreate = true;
+    this.submitted = false;
   }
 
 
@@ -342,50 +395,11 @@ export class EmployeeComponent implements OnInit {
   }
 
 
-  getDesignation(val): void {
-    console.log(val, "val");
-    // this._employeeMasterService.getDesignationById(this.employeeDetail.CompanyId).subscribe(
-    //   (result: any) => {
-    //     debugger;
-    //     console.log(result);
-    //     this.designationData = result;
-    //     console.log(this.designationData, 'Des');
-    //   },
-    //   error => {
-    //     if (error.status === 401) {
-    //       alert("Unauthorized");
-    //     } else {
-    //       alert("Something went wrong! Try Again");
-    //     }
-    //   }
-    // );
-  }
-
-  // getReportTo(): void {
-  //   debugger;
-  //   let element = {
-  //     EmployeeId: this.employeeDetail.EmployeeId,
-  //     ActionBy: sessionStorage.getItem('UserID')
-  //   }
-  //   this._employeeMasterService.getReport(element).subscribe(
-  //     (result: any) => {
-  //       debugger;
-  //       this.reportData = result.result;
-  //       console.log(this.reportData, 'Report');
-  //     },
-  //     error => {
-  //       if (error.status === 401) { alert("Unauthorized"); }
-  //       else { alert("Something went wrong! Try Again"); }
-  //     }
-  //   );
-  // }
-
-
   saveEmployee(): void {
     debugger;
     console.log("EmployeeForm", this.EmployeeForm);
     console.log("BankForm",  this.BankForm);
-    
+    this.submitted = true;
     // if (this.checkValidation()) {
     // if (this.employeeDetail.PF == 1) {
     //   if (!this.isEditing) {

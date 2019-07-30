@@ -1,3 +1,15 @@
 .marginTop{
     margin-top:35px
 }
+
+.FixedSize{
+    width:180px;
+    height: 180px;
+}
+
+img{
+    max-width:180px;
+  }
+  input[type=file]{
+  padding:10px;
+  background:#014e21b4;}
