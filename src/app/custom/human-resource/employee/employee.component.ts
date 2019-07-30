@@ -22,6 +22,7 @@ export class EmployeeComponent implements OnInit {
   imageSrc: string;
   designationData: any =[];
   reportData:any = [];
+  EmployeeId: 0;
   bloodGroupData = [{ Name: 'A+' }, { Name: 'A-' }, { Name: 'B+' }, { Name: 'B-' }, { Name: 'O+' }, { Name: 'O-' }, { Name: 'AB+' }, { Name: 'AB-' }]
 
   constructor(private formBuilder: FormBuilder, private _employeeMasterService : EmployeeMasterService) { }
@@ -149,26 +150,43 @@ export class EmployeeComponent implements OnInit {
     );
   }
 
-  getAllState(): void {
-    debugger;
-    this.cityData = [];
-    let element = {
-      ActionBy: sessionStorage.getItem('UserID')
-    };
-    this._employeeMasterService.getState(element).subscribe(
-      (result: any) => {
-        debugger;
-        this.stateData = result;
-      },
-      error => {
-        if (error.status === 401) {
-          alert("Unauthorized");
-        } else {
-          alert("Something went wrong! Try Again");
+    getAllState(): void {
+      debugger;
+      this.cityData = [];
+      let element = {
+        ActionBy: sessionStorage.getItem('UserID')
+      };
+      this._employeeMasterService.getState(element).subscribe(
+        (result: any) => {
+          debugger;
+          this.stateData = result;
+        },
+        error => {
+          if (error.status === 401) {
+            alert("Unauthorized");
+          } else {
+            alert("Something went wrong! Try Again");
+          }
         }
-      }
-    );
-  }
+      );
+    }
+
+    getAllCity(val): void {
+      console.log(val, "val");
+      let stateId = parseInt(val.target.value);
+      this._employeeMasterService.getCity(stateId).subscribe(
+        (result: any) => {
+          this.cityData = result;
+        },
+        error => {
+          if (error.status === 401) {
+            alert("Unauthorized");
+          } else {
+            alert("Something went wrong! Try Again");
+          }
+        }
+      );
+    }
 
   getDesignation(val): void {
     let CompanyId =  parseInt(val.target.value);
@@ -189,13 +207,14 @@ export class EmployeeComponent implements OnInit {
   getReportTo(): void {
     debugger;
     let element = {
-      EmployeeId: this.employeeDetail.EmployeeId,
+      EmployeeId:  this.EmployeeId,
       ActionBy: sessionStorage.getItem('UserID')
     }
     this._employeeMasterService.getReport(element).subscribe(
-      (result: any) => {
+      (response: any) => {
         debugger;
-        this.reportData = result.result;
+        this.reportData = response.result;
+        console.log(response.result,"response.result")
       },
       error => {
         if (error.status === 401) { alert("Unauthorized"); }
@@ -370,29 +389,24 @@ export class EmployeeComponent implements OnInit {
   // }
 
 
+  // getCity(): void {
+  //   debugger;
+  //   this._manpowerDetailService.getCityMaster(this.employeeDetail.State).subscribe(
+  //     (result: any) => {
+  //       this.cityData = result;
+  //     },
+  //     error => {
+  //       if (error.status === 401) {
+  //         this._confirmationDialogComponent.openAlertDialog("Unauthorized", "Manpower Details");
+  //       } else {
+  //         this._confirmationDialogComponent.openAlertDialog("Something went wrong! Try Again", "Manpower Details");
+  //       }
+  //     }
+  //   );
+  // }
 
-  getAllCity(val): void {
-    console.log(val, "val");
-    // let element = {
-    //   StateId: this.customer.State,
-    // //  ActionBy: sessionStorage.getItem('UserID')
-    // };
-    // this._employeeMasterService.getCity(this.employeeDetail.State).subscribe(
-    //   (result: any) => {
-    //     debugger;
-    //     console.log(result);
-    //     this.cityData = result;
-    //     console.log(this.cityData);
-    //   },
-    //   error => {
-    //     if (error.status === 401) {
-    //       alert("Unauthorized");
-    //     } else {
-    //       alert("Something went wrong! Try Again");
-    //     }
-    //   }
-    // );
-  }
+
+
 
 
   saveEmployee(): void {
@@ -592,21 +606,7 @@ export class EmployeeComponent implements OnInit {
   //   this.BankDetails = {};
   // }
   
-  // getCity(): void {
-  //   debugger;
-  //   this._manpowerDetailService.getCityMaster(this.employeeDetail.State).subscribe(
-  //     (result: any) => {
-  //       this.cityData = result;
-  //     },
-  //     error => {
-  //       if (error.status === 401) {
-  //         this._confirmationDialogComponent.openAlertDialog("Unauthorized", "Manpower Details");
-  //       } else {
-  //         this._confirmationDialogComponent.openAlertDialog("Something went wrong! Try Again", "Manpower Details");
-  //       }
-  //     }
-  //   );
-  // }
+
 
   // editEmployeeDetails(modifyEmployee): void {
   //   debugger;

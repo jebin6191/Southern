@@ -132,7 +132,7 @@
                         </div>
                         <div class="form-group">
                                 <label for="Designation">Designation</label>
-                                <select class="form-control" id="Designation" formControlName="Designation" [ngClass]="{ 'is-invalid': submitted && f.Designation.errors }">
+                                <select class="form-control" id="Designation" formControlName="Designation" [ngClass]="{ 'is-invalid': submitted && f.Designation.errors }" (change)="getReportTo()">
                                     <option value="">Select</option>
                                     <option *ngFor="let designation of designationData" [value]="designation.DesignationId">{{designation.DesignationName}}</option>
                                 </select>
@@ -143,8 +143,8 @@
                         <div class="form-group">
                             <label for="ReportTo">Report To</label>
                             <select class="form-control" id="ReportTo" formControlName="ReportTo" [ngClass]="{ 'is-invalid': submitted && f.ReportTo.errors }">
-                                <option>JeBin</option>
-                                <option>Prakash</option>
+                                <option value="">Select</option>
+                                <option *ngFor="let report of reportData" [value]="report.EmployeeId">{{report.EmployeeName}}</option>
                             </select>
                             <div *ngIf="submitted && f.ReportTo.errors" class="invalid-feedback">
                                 <div *ngIf="f.ReportTo.errors.required">Report To is required</div>
@@ -170,23 +170,30 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="CurrentAddress">Present Address</label>
-                                    <textarea class="form-control" id="CurrentAddress" formControlName="CurrentAddress" name="textarea-input" placeholder="Present Address..." rows="4"></textarea>
+                                    <textarea class="form-control" id="CurrentAddress" formControlName="CurrentAddress" [ngClass]="{ 'is-invalid': submitted && f.CurrentAddress.errors }" name="textarea-input" placeholder="Present Address..." rows="4"></textarea>
+                                    <div *ngIf="submitted && f.CurrentAddress.errors" class="invalid-feedback">
+                                        <div *ngIf="f.CurrentAddress.errors.required">Current Place is required</div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="State">State</label>
-                                    <select class="form-control" id="State" formControlName="State" (change)="getAllCity($event)">
+                                    <select class="form-control" id="State" formControlName="State" (change)="getAllCity($event)" [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
                                             <option value="">Select</option>
                                             <option *ngFor="let state of stateData" [value]="state.StateId">{{ state.StateName}}</option>
                                         </select>
+                                        <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
+                                            <div *ngIf="f.State.errors.required">State is required</div>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="street">City</label>
-                                    <select class="form-control" id="City" >
-                                            <option>Chennai</option>
-                                            <option>Madurai</option>
-                                            <option>Bangalore</option>
-                                            <option>Wayanad</option>
+                                    <select class="form-control" id="City" formControlName="City" [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let city of cityData"  [value]="city.CityId" >{{city.CityName}}</option>
                                         </select>
+                                        <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+                                            <div *ngIf="f.City.errors.required">City is required</div>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="checkbox"/>
@@ -194,50 +201,74 @@
                                     </div>
                                 <div class="form-group">
                                         <label for="PermanentAddress">Permenant Address</label>
-                                        <textarea class="form-control" id="PermanentAddress"  formControlName="PermanentAddress" name="textarea-input" placeholder="Permenant Address..." rows="4"></textarea>
+                                        <textarea class="form-control" id="PermanentAddress"  formControlName="PermanentAddress"  [ngClass]="{ 'is-invalid': submitted && f.PermanentAddress.errors }" name="textarea-input" placeholder="Permenant Address..." rows="4"></textarea>
+                                        <div *ngIf="submitted && f.PermanentAddress.errors" class="invalid-feedback">
+                                            <div *ngIf="f.PermanentAddress.errors.required">Permanent Address is required</div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="AdhaarNo">Adhaar No</label>
-                                        <input type="text" class="form-control" id="AdhaarNo" formControlName="AdhaarNo" placeholder="Enter the Adhaar No">
+                                        <input type="text" class="form-control" id="AdhaarNo" formControlName="AdhaarNo"  [ngClass]="{ 'is-invalid': submitted && f.AdhaarNo.errors }" placeholder="Enter the Adhaar No">
+                                        <div *ngIf="submitted && f.AdhaarNo.errors" class="invalid-feedback">
+                                            <div *ngIf="f.AdhaarNo.errors.required">Aadhar No is required</div>
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="AlternateContactNo">Alternate Contact No</label>
-                                        <input type="text" class="form-control" id="AlternateContactNo" formControlName="AlternateContactNo" placeholder="Enter Alternate ContactNo">
+                                        <input type="text" class="form-control" id="AlternateContactNo" formControlName="AlternateContactNo"  [ngClass]="{ 'is-invalid': submitted && f.AlternateContactNo.errors }" placeholder="Enter Alternate ContactNo">
+                                        <div *ngIf="submitted && f.AlternateContactNo.errors" class="invalid-feedback">
+                                            <div *ngIf="f.AlternateContactNo.errors.required">Alternate Contact is required</div>
+                                        </div>
                                     </div>                                       
                                 </div>
                                 <div class="col-sm-6"> 
                                     <div class="form-group">
                                             <label for="MotherName">Mother Name</label>
-                                            <input type="text" class="form-control" id="MotherName" formControlName="MotherName" placeholder="Enter the Mother name">
+                                            <input type="text" class="form-control" id="MotherName" formControlName="MotherName"  [ngClass]="{ 'is-invalid': submitted && f.MotherName.errors }" placeholder="Enter the Mother name">
+                                            <div *ngIf="submitted && f.MotherName.errors" class="invalid-feedback">
+                                                <div *ngIf="f.MotherName.errors.required">Mother's Name is required</div>
+                                            </div>
                                         </div>
                                     <div class="form-group">
                                         <label for="BloodGroup">Blood Group</label>
-                                        <select class="form-control" id="BloodGroup" formControlName="BloodGroup">
-                                            <option>A+</option>
-                                            <option>B+</option>
+                                        <select class="form-control" id="BloodGroup" formControlName="BloodGroup"  [ngClass]="{ 'is-invalid': submitted && f.BloodGroup.errors }">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let bloodgroup of bloodGroupData" [value]="bloodgroup.Name">{{bloodgroup.Name}}</option>
                                         </select>
+                                        <div *ngIf="submitted && f.BloodGroup.errors" class="invalid-feedback">
+                                            <div *ngIf="f.BloodGroup.errors.required">Blood Group is required</div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="DOJ">Date of Joining</label>
                                         <div class="input-group">
-                                                <input class="form-control" id="DOJ" formControlName="DOJ" placeholder="Enter the Date Of Joining" placeholder="yyyy-mm-dd"
+                                                <input class="form-control" id="DOJ" formControlName="DOJ"  [ngClass]="{ 'is-invalid': submitted && f.DOJ.errors }" placeholder="Enter the Date Of Joining" placeholder="yyyy-mm-dd"
                                                         name="d2" ngbDatepicker #d2="ngbDatepicker">
                                                 <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary icon-calendar" (click)="d2.toggle()" type="button"></button>
+                                                </div>
+                                                <div *ngIf="submitted && f.DOJ.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.DOJ.errors.required">Date of Joining is required</div>
                                                 </div>
                                             </div>
                                         </div>
                                     <div class="form-group">
                                         <label for="ReferenceBy">Referenced By</label>
-                                        <select class="form-control" id="ReferenceBy" formControlName="ReferenceBy">
+                                        <select class="form-control" id="ReferenceBy" formControlName="ReferenceBy"  [ngClass]="{ 'is-invalid': submitted && f.ReferenceBy.errors }">
                                             <option>Jebin</option>
                                             <option>Pradeep</option>
                                         </select>
+                                        <div *ngIf="submitted && f.ReferenceBy.errors" class="invalid-feedback">
+                                            <div *ngIf="f.ReferenceBy.errors.required">Reference By is required</div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="ReferenceContact1">Referance Contact 1</label>
-                                        <input type="text" class="form-control" id="ReferenceContact1" formControlName="ReferenceContact1" placeholder="Referance Contact 1">
+                                        <input type="text" class="form-control" id="ReferenceContact1" formControlName="ReferenceContact1"  [ngClass]="{ 'is-invalid': submitted && f.ReferenceContact1.errors }" placeholder="Referance Contact 1">
+                                        <div *ngIf="submitted && f.ReferenceContact1.errors" class="invalid-feedback">
+                                            <div *ngIf="f.ReferenceContact1.errors.required">Referance Contact 1 is required</div>
+                                        </div>
                                     </div><!--/.row-->
                                     <div class="form-group">
                                         <label for="country">Referance Contact 2</label>
@@ -261,7 +292,7 @@
                     </div>
                 </div> 
 
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf="ShowBankDetails">
                     <div class="card">
                     <div class="card-header">
                             <strong>Bank Details</strong>
@@ -330,13 +361,19 @@
                             </div>
                           </div>
 
-                            <div class="card-footer">
-                                <button type="button" class="btn btn-sm btn-danger pull-right" (click)="OnCancelBtnClick()">Cancel</button> 
-                                <button type="submit" class="btn btn-sm btn-primary pull-right" (click)="saveEmployee()">Submit</button>
-                            </div>
+                            
+                    </div>
+                    
+                </div>
+                <div class="card col-sm-12">
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-sm btn-danger pull-right" (click)="OnCancelBtnClick()">Cancel</button> 
+                        <button type="submit" class="btn btn-sm btn-primary pull-right" (click)="saveEmployee()">Submit</button>
                     </div>
                 </div>
-        </div>
+                
+                </div>
+               
     </form>   
 </div>
 
