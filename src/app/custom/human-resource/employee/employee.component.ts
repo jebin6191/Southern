@@ -23,6 +23,7 @@ export class EmployeeComponent implements OnInit {
   designationData: any =[];
   reportData:any = [];
   EmployeeId: 0;
+  ShowBankDetails = false;
   bloodGroupData = [{ Name: 'A+' }, { Name: 'A-' }, { Name: 'B+' }, { Name: 'B-' }, { Name: 'O+' }, { Name: 'O-' }, { Name: 'AB+' }, { Name: 'AB-' }]
 
   constructor(private formBuilder: FormBuilder, private _employeeMasterService : EmployeeMasterService) { }
