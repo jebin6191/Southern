@@ -131,14 +131,14 @@
                                 </div>
                         </div>
                         <div class="form-group">
-                                <label for="Designation">Designation</label>
-                                <select class="form-control" id="Designation" formControlName="Designation" [ngClass]="{ 'is-invalid': submitted && f.Designation.errors }" (change)="getReportTo()">
-                                    <option value="">Select</option>
-                                    <option *ngFor="let designation of designationData" [value]="designation.DesignationId">{{designation.DesignationName}}</option>
-                                </select>
-                                <div *ngIf="submitted && f.Designation.errors" class="invalid-feedback">
-                                        <div *ngIf="f.Designation.errors.required">Designation is required</div>
-                                    </div>
+                            <label for="Designation">Designation</label>
+                            <select class="form-control" id="Designation" formControlName="Designation" [ngClass]="{ 'is-invalid': submitted && f.Designation.errors }" (change)="getReportTo()">
+                                <option value="">Select</option>
+                                <option *ngFor="let designation of designationData" [value]="designation.DesignationId">{{designation.DesignationName}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.Designation.errors" class="invalid-feedback">
+                                    <div *ngIf="f.Designation.errors.required">Designation is required</div>
+                                </div>
                             </div>
                         <div class="form-group">
                             <label for="ReportTo">Report To</label>
@@ -283,7 +283,7 @@
                                             <input type="text" class="form-control" id="JobType" formControlName="JobType" placeholder="Enter Job Type">
                                         </div>
                                     <div class="form-group">
-                                        <input type="checkbox" id="ShowBankDetails" formControlName="ShowBankDetails" />
+                                        <input type="checkbox" id="ShowBankDetails" formControlName="ShowBankDetails" (change)="ShowBankDetails= !ShowBankDetails"/>
                                             <label for="ShowBankDetails"><h5>Select if you have bank details</h5></label>
                                         </div>
                                 </div>
@@ -291,41 +291,55 @@
                         </div>
                     </div>
                 </div> 
-
                 <div class="col-md-12" *ngIf="ShowBankDetails">
                     <div class="card">
                     <div class="card-header">
                             <strong>Bank Details</strong>
                     </div>
-                    <form [formGroup]="BankForm">
+                    <form [formGroup]="BankForm" (submit)="AddToListBankDetails()">
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-4">
                                     <label for="AccountNo">Account Number</label>
-                                    <input type="text" class="form-control" id="AccountNo" formControlName="AccountNo" placeholder="Enter Account Number ">
+                                    <input type="text" class="form-control" id="AccountNo" formControlName="AccountNo" [ngClass]="{ 'is-invalid': submitted && f.AccountNo.errors }" placeholder="Enter Account Number">
+                                    <div *ngIf="submitted && s.AccountNo.errors" class="invalid-feedback">
+                                        <div *ngIf="s.AccountNo.errors.required">Account No is required</div>
+                                    </div>
                             </div>
                             <div class="col-4">
                                     <label for="BankName">Bank Name</label>
-                                    <input type="text" class="form-control" id="BankName" formControlName="BankName" placeholder="Enter Bank Name">
+                                    <input type="text" class="form-control" id="BankName" formControlName="BankName" [ngClass]="{ 'is-invalid': submitted && f.BankName.errors }" placeholder="Enter Bank Name">
+                                    <div *ngIf="submitted && s.BankName.errors" class="invalid-feedback">
+                                        <div *ngIf="s.BankName.errors.required">Bank Name is required</div>
+                                    </div>
                             </div>
                             <div class="col-4">
                                     <label for="IFSC">IFSC Code</label>
-                                    <input type="text" class="form-control" id="IFSC" formControlName="IFSC" placeholder="Enter IFSC Code">
+                                    <input type="text" class="form-control" id="IFSC" formControlName="IFSC" [ngClass]="{ 'is-invalid': submitted && f.IFSC.errors }" placeholder="Enter IFSC Code">
+                                    <div *ngIf="submitted && s.IFSC.errors" class="invalid-feedback">
+                                        <div *ngIf="s.IFSC.errors.required">IFSC Code is required</div>
+                                    </div>
                             </div>
                             <div class="col-3">
                                     <label for="Branch">Branch Name</label>
-                                    <input type="text" class="form-control" id="Branch" formControlName="Branch" placeholder="Enter Branch Name">
+                                    <input type="text" class="form-control" id="Branch" formControlName="Branch" [ngClass]="{ 'is-invalid': submitted && f.Branch.errors }" placeholder="Enter Branch Name">
+                                    <div *ngIf="submitted && s.Branch.errors" class="invalid-feedback">
+                                        <div *ngIf="s.Branch.errors.required">Branch Name is required</div>
+                                    </div>
                             </div>
                             <div class="col-3">
                                     <label for="MICR">MICR Code</label>
-                                    <input type="text" class="form-control" id="MICR" formControlName="MICR" placeholder="Enter MICR Code">
+                                    <input type="text" class="form-control" id="MICR" formControlName="MICR" [ngClass]="{ 'is-invalid': submitted && f.MICR.errors }" placeholder="Enter MICR Code">
+                                    <div *ngIf="submitted && s.MICR.errors" class="invalid-feedback">
+                                        <div *ngIf="s.MICR.errors.required">MICR Code is required</div>
+                                    </div>
                             </div>
                             <div class="col-2 marginTop">
                                     <input type="checkbox" id="isPrimary" formControlName="isPrimary" />
                                     <label for="isPrimary"><h5>Primary Account</h5></label>
                             </div>
                             <div class="col-3 marginTop">
-                                    <button type="submit" class="btn btn-pill btn-warning">Add To List</button>
+                                    <button type="submit" class="btn btn-pill btn-warning" >Add To List</button>
                             </div>
                         </div>
                     </div>
@@ -354,16 +368,12 @@
                                       <td>{{bank.MICR}}</td>
                                       <td>{{bank.isPrimary}}</td>
                                     </tr>
-                                   
                                   </tbody>
                                 </table>
                               </div>
                             </div>
                           </div>
-
-                            
-                    </div>
-                    
+                    </div>                   
                 </div>
                 <div class="card col-sm-12">
                     <div class="card-footer">
@@ -372,8 +382,7 @@
                     </div>
                 </div>
                 
-                </div>
-               
+            </div>
     </form>   
 </div>
 

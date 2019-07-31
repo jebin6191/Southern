@@ -77,6 +77,10 @@ export class EmployeeComponent implements OnInit {
   }
 
     get f() { return this.EmployeeForm.controls; }
+    get s() { 
+      if(this.ShowBankDetails)
+        return this.BankForm.value; 
+      }
 
   // BankDetails: any = {
   //   EmployeeBankId: 0,
@@ -111,6 +115,13 @@ export class EmployeeComponent implements OnInit {
     }
       reader.readAsDataURL(ev.files[0]);
   }
+}
+
+AddToListBankDetails(){
+  console.log(this.BankForm.value);
+  this.BankData.push(this.BankForm.value);
+  this.BankForm.reset();
+
 }
 
 
